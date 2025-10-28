@@ -26,6 +26,8 @@
 
 A non-redundant database of transposable element consensus sequences for the fungal kingdom.
 
+To learn about the purpose and benefits of MycoMobilome, please refer to the [preprint on BioRxiv]().
+
 MycoMobilome was generated from all publicly available fungal genome resources from JGI (excluding restricted assemblies) and NCBI. This is an uncurated database, but all consensus sequences have been generated using a consistent and reproducible curation process performed using [Earl Grey](https://github.com/TobyBaril/EarlGrey/), followed by several post-processing steps to refine TE consensus sequences, remove those generated from multi-copy host genes, identify TE copies with ORFs that match known TE domains, and those with homology to known TEs from across eukaryotic diversity. 
 
 We aim to provide this _uncurated_ database as a starting point to facilitate investigations across fungal diversity. We welcome efforts to curate sequences, even a couple in your favourite lineages, or to contribute new sequences as you generate them in new genome assemblies. We aim to make this process easy, while ensuring contributions are correctly acknowledged, through the use of the [MycoMobilome Zenodo Community](https://zenodo.org/communities/mycomobilome/).
