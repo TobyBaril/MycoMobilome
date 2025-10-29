@@ -22,7 +22,7 @@
         |___/                                                       
 ```
 
-
+[![DOI](https://zenodo.org/badge/1084897377.svg)](https://doi.org/10.5281/zenodo.17473060)
 
 A non-redundant database of transposable element consensus sequences for the fungal kingdom.
 
