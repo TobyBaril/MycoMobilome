@@ -59,7 +59,7 @@ curl -O "https://zenodo.org/record/17037469/files/MycoMobilome_v1.0.tar.gz"
 tar -zxvf MycoMobilome_v1.0.tar.gz
 ```
 
-4. Make a note of which database you would like to use. We provide three different databases to fit your needs. 
+4. Make a note of which database you would like to use. We provide six different databases to fit your needs. 
 
 Consensus sequences are annotated with three evidence categories:
  - _PE: Protein evidence supporting the classification
@@ -68,13 +68,20 @@ Consensus sequences are annotated with three evidence categories:
 
 If you have specific hits you are interested in, we provide the ORF domain hits and known repeat hits for you to assess supporting evidence as and when required.
 
-Three versions of the database are provided:
-  - `MycoMobilome_v1.0-allConsensus_TE_library.fasta`: All known and unknown TE consensus sequences detected across fungal diversity. Most useful for most use cases.
-  - `MycoMobilome_v1.0-proteinEvidence_TE_library.fasta`: All TE consensus sequences with ORF hits to known TE proteins. Note the evidence markers in sequence headers and that this subset will not contain any non-autonomous TEs (i.e. SINEs, MITEs, solo LTRs, etc).
-  - `MycoMobilome_v1.0-unknown_TE_library.fasta`: All TE consensus sequences with NO protein evidence supporting their status as true TEs. These have the potential to be real given little existing knowledge of TE diversity across the kingdom. Many of these are likely non-autonomous elements, such as MITEs (non-autonomous DNA elements), solo LTRs, and SINEs, which will NOT be found in the `proteinEvidence` subset. However, some sequences are also likely to be erroneous, so use carefully.
+Six versions of the database are provided:
 
-In addition to these three database files, the following files are also provided:
-  - `MycoMobilome_v1.0_assemblyRecord.xlsx`: A record of all publicly available genome assemblies used to generate MycoMobilome. Here, you will find information on assembly length, N50, L50, GC content, species phylogenetic information, genome assembly source and ID, publication, and BUSCO scores.
+1. The Unclustered Database (Contains Redundant Consensus Sequences)
+  -`MycoMobilome_v1.1-unclustered_TE_library.fasta`: All known and unknown TE consensus sequences detected across fungal diversity. Most useful for most use cases.
+  -`MycoMobilome_v1.1-unclustered_proteinEvidence_TE_library.fasta`: All TE consensus sequences with ORF hits to known TE proteins. Note the evidence markers in sequence headers and that this subset will not contain any non-autonomous TEs (i.e. SINEs, MITEs, solo LTRs, etc).
+  -`MycoMobilome_v1.1-unclustered_unknown_TE_library.fasta`: All TE consensus sequences with NO protein evidence supporting their status as true TEs. These have the potential to be real given little existing knowledge of TE diversity across the kingdom. Many of these are likely non-autonomous elements, such as MITEs (non-autonomous DNA elements), solo LTRs, and SINEs, which will NOT be found in the `proteinEvidence` subset. However, some sequences are also likely to be erroneous, so use carefully.
+
+2. The Clustered Database (Following the 80-80-80 rule)
+  - `MycoMobilome_v1.1-clustered_80_TE_library.fasta`: All known and unknown TE consensus sequences detected across fungal diversity. Most useful for most use cases.
+  - `MycoMobilome_v1.1-clustered_80_proteinEvidence_TE_library.fasta`: All TE consensus sequences with ORF hits to known TE proteins. Note the evidence markers in sequence headers and that this subset will not contain any non-autonomous TEs (i.e. SINEs, MITEs, solo LTRs, etc).
+  - `MycoMobilome_v1.1-clustered_80_unknown_TE_library.fasta`: All TE consensus sequences with NO protein evidence supporting their status as true TEs. These have the potential to be real given little existing knowledge of TE diversity across the kingdom. Many of these are likely non-autonomous elements, such as MITEs (non-autonomous DNA elements), solo LTRs, and SINEs, which will NOT be found in the `proteinEvidence` subset. However, some sequences are also likely to be erroneous, so use carefully.
+
+In addition to these six database files, the following files are also provided:
+  - `MycoMobilome_v1.1_assemblyRecord.xlsx`: A record of all publicly available genome assemblies used to generate MycoMobilome. Here, you will find information on assembly length, N50, L50, GC content, species phylogenetic information, genome assembly source and ID, publication, and BUSCO scores.
   - `MycoMobilome-hitsToKnownTransposonProteins-repetPfam35.txt`: A TAB-separated file showing hmmscan hits for each MycoMobilome consensus sequence open reading frame to TE domains from the [REPET Pfam 35.0 and Gypsy DB curated TE domain dataset](https://urgi.versailles.inrae.fr/download/repet/profiles/ProfilesBankForREPET_Pfam35.0_GypsyDB.hmm.tar.gz). Here, `qseqid` ends with _n, where n is the ORF number. The query sequence to match to MycoMobilome sequence headers can be found in the column named `qseqid_noFrame`.
   - `MycoMobilome-hitsToKnownTransposonProteins-rmRepeatPeps.txt`: A TAB-separated file showing BLASTp hits for each MycoMobilome consensus sequence open reading frame to TE domains from the RepeatMasker RepeatPeps.lib file supplied with RepeatMasker v4.1.9.  
 
