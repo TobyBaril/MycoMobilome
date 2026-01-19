@@ -50,7 +50,7 @@ mamba install -n earlgrey bioconda::earlgrey
 
 ```
 mkdir -p MycoMobilome_db && cd MycoMobilome_db
-curl -O "https://zenodo.org/record/18243921/files/MycoMobilome_v1.1.tar.gz"
+curl -O "https://zenodo.org/records/18243921/files/MycoMobilome_v1.1.tar.gz"
 ```
 
 3. Uncompress the database files
