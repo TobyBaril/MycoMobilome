@@ -50,16 +50,16 @@ mamba install -n earlgrey bioconda::earlgrey
 
 ```
 mkdir -p MycoMobilome_db && cd MycoMobilome_db
-curl -O "https://zenodo.org/record/17037469/files/MycoMobilome_v1.0.tar.gz"
+curl -O "https://zenodo.org/records/18243921/files/MycoMobilome_v1.1.tar.gz"
 ```
 
 3. Uncompress the database files
 
 ```
-tar -zxvf MycoMobilome_v1.0.tar.gz
+tar -zxvf MycoMobilome_v1.1.tar.gz
 ```
 
-4. Make a note of which database you would like to use. We provide three different databases to fit your needs. 
+4. Make a note of which database you would like to use. We provide six different databases to fit your needs. 
 
 Consensus sequences are annotated with three evidence categories:
  - _PE: Protein evidence supporting the classification
@@ -68,15 +68,22 @@ Consensus sequences are annotated with three evidence categories:
 
 If you have specific hits you are interested in, we provide the ORF domain hits and known repeat hits for you to assess supporting evidence as and when required.
 
-Three versions of the database are provided:
-  - `MycoMobilome_v1.0-allConsensus_TE_library.fasta`: All known and unknown TE consensus sequences detected across fungal diversity. Most useful for most use cases.
-  - `MycoMobilome_v1.0-proteinEvidence_TE_library.fasta`: All TE consensus sequences with ORF hits to known TE proteins. Note the evidence markers in sequence headers and that this subset will not contain any non-autonomous TEs (i.e. SINEs, MITEs, solo LTRs, etc).
-  - `MycoMobilome_v1.0-unknown_TE_library.fasta`: All TE consensus sequences with NO protein evidence supporting their status as true TEs. These have the potential to be real given little existing knowledge of TE diversity across the kingdom. Many of these are likely non-autonomous elements, such as MITEs (non-autonomous DNA elements), solo LTRs, and SINEs, which will NOT be found in the `proteinEvidence` subset. However, some sequences are also likely to be erroneous, so use carefully.
+Six versions of the database are provided:
 
-In addition to these three database files, the following files are also provided:
-  - `MycoMobilome_v1.0_assemblyRecord.xlsx`: A record of all publicly available genome assemblies used to generate MycoMobilome. Here, you will find information on assembly length, N50, L50, GC content, species phylogenetic information, genome assembly source and ID, publication, and BUSCO scores.
-  - `MycoMobilome-hitsToKnownTransposonProteins-repetPfam35.txt`: A TAB-separated file showing hmmscan hits for each MycoMobilome consensus sequence open reading frame to TE domains from the [REPET Pfam 35.0 and Gypsy DB curated TE domain dataset](https://urgi.versailles.inrae.fr/download/repet/profiles/ProfilesBankForREPET_Pfam35.0_GypsyDB.hmm.tar.gz). Here, `qseqid` ends with _n, where n is the ORF number. The query sequence to match to MycoMobilome sequence headers can be found in the column named `qseqid_noFrame`.
-  - `MycoMobilome-hitsToKnownTransposonProteins-rmRepeatPeps.txt`: A TAB-separated file showing BLASTp hits for each MycoMobilome consensus sequence open reading frame to TE domains from the RepeatMasker RepeatPeps.lib file supplied with RepeatMasker v4.1.9.  
+1. The Unclustered Database (Contains Redundant Consensus Sequences)
+  -`MycoMobilome_v1.1-unclustered_TE_library.fasta`: All known and unknown TE consensus sequences detected across fungal diversity. Most useful for most use cases.
+  -`MycoMobilome_v1.1-unclustered_proteinEvidence_TE_library.fasta`: All TE consensus sequences with ORF hits to known TE proteins. Note the evidence markers in sequence headers and that this subset will not contain any non-autonomous TEs (i.e. SINEs, MITEs, solo LTRs, etc).
+  -`MycoMobilome_v1.1-unclustered_unknown_TE_library.fasta`: All TE consensus sequences with NO protein evidence supporting their status as true TEs. These have the potential to be real given little existing knowledge of TE diversity across the kingdom. Many of these are likely non-autonomous elements, such as MITEs (non-autonomous DNA elements), solo LTRs, and SINEs, which will NOT be found in the `proteinEvidence` subset. However, some sequences are also likely to be erroneous, so use carefully.
+
+2. The Clustered Database (Following the 80-80-80 rule)
+  - `MycoMobilome_v1.1-clustered_80_TE_library.fasta`: All known and unknown TE consensus sequences detected across fungal diversity. Most useful for most use cases.
+  - `MycoMobilome_v1.1-clustered_80_proteinEvidence_TE_library.fasta`: All TE consensus sequences with ORF hits to known TE proteins. Note the evidence markers in sequence headers and that this subset will not contain any non-autonomous TEs (i.e. SINEs, MITEs, solo LTRs, etc).
+  - `MycoMobilome_v1.1-clustered_80_unknown_TE_library.fasta`: All TE consensus sequences with NO protein evidence supporting their status as true TEs. These have the potential to be real given little existing knowledge of TE diversity across the kingdom. Many of these are likely non-autonomous elements, such as MITEs (non-autonomous DNA elements), solo LTRs, and SINEs, which will NOT be found in the `proteinEvidence` subset. However, some sequences are also likely to be erroneous, so use carefully.
+
+In addition to these six database files, the following files are also provided:
+  - `MycoMobilome_v1.1_assemblyRecord.xlsx`: A record of all publicly available genome assemblies used to generate MycoMobilome. Here, you will find information on assembly length, N50, L50, GC content, species phylogenetic information, genome assembly source and ID, publication, and BUSCO scores.
+  - `MycoMobilome-hitsToKnownTransposonProteins-repetPfam35.txt`: A TAB-separated file showing hmmscan hits for each MycoMobilome family open reading frame to TE domains from the [REPET Pfam 35.0 and Gypsy DB curated TE domain dataset](https://urgi.versailles.inrae.fr/download/repet/profiles/ProfilesBankForREPET_Pfam35.0_GypsyDB.hmm.tar.gz). Here, `qseqid` ends with _n, where n is the ORF number. The query sequence to match to MycoMobilome sequence headers can be found in the column named `qseqid_noFrame`.
+  - `MycoMobilome-hitsToKnownTransposonProteins-rmRepeatPeps.txt`: A TAB-separated file showing BLASTp hits for each MycoMobilome family open reading frame to TE domains from the RepeatMasker RepeatPeps.lib file supplied with RepeatMasker v4.1.9.  
 
 5. The database can now be used for repeat annotation. Now, think carefully about how you want to proceed: (a) I want to annotate TEs already present in the database and that's it. (b) I want to annotate TEs already present in the database, then perform _de novo_ TE curation, combine these sequences with MycoMobilome, then re-annotate the genome with a new combined library.
   - A.  I want to annotate TEs already present in the database and that's it.
@@ -88,7 +95,7 @@ In addition to these three database files, the following files are also provided
     earlGreyAnnotationOnly -g [input_genome_assembly.fasta] -s [name_to_use_for_outputs] -o [output_directory] -l [MycoMobilome_library.fasta] -t [threads]
 
     # e.g. for an assembly of zymoseptoria tritici (zymtri1.fasta) in the current directory with 16 CPU threads
-    earlGreyAnnotationOnly -g zymtri1.fasta -o zymtri1 -o ./outputs/ -l MycoMobilome_v1.0-allConsensus_TE_library.fasta -t 16
+    earlGreyAnnotationOnly -g zymtri1.fasta -o zymtri1 -o ./outputs/ -l MycoMobilome_v1.1-clustered_80_TE_library.fasta -t 16
 
     # note the potential optional parameters and refer to our thoughts on best practices for some recommendations.
     ```
@@ -101,7 +108,7 @@ In addition to these three database files, the following files are also provided
     earlGrey -g [input_genome_assembly.fasta] -s [name_to_use_for_outputs] -o [output_directory] -l [MycoMobilome_library.fasta] -t [threads]
 
     # e.g. for an assembly of zymoseptoria tritici (zymtri1.fasta) in the current directory with 16 CPU threads
-    earlGrey -g zymtri1.fasta -s zymtri1 -o ./outputs/ -l MycoMobilome_v1.0-allConsensus_TE_library.fasta -t 16
+    earlGrey -g zymtri1.fasta -s zymtri1 -o ./outputs/ -l MycoMobilome_v1.1-clustered_80_TE_library.fasta -t 16
 
     # note the potential optional parameters and refer to our thoughts on best practices for some recommendations.
     ```
@@ -112,19 +119,21 @@ In addition to these three database files, the following files are also provided
 
 ## How this database was generated
 
-The MycoMobilome database was generated using a standardised _de novo_ TE curation approach among all publicly available fungal genome resources (n=4,309 genomes). A table containing information on all assemblies used to generate version 1.0 of this database is provided within `MycoMobilome_v1.0` in the file `MycoMobilome_v1.0_assemblyRecord.xlsx`.
+The MycoMobilome database was generated using a standardised _de novo_ TE curation approach among all publicly available fungal genome resources (n=4,309 genomes). A table containing information on all assemblies used to generate version 1.1 of this database is provided within `MycoMobilome_v1.1` in the file `MycoMobilome_v1.1_assemblyRecord.xlsx`.
 
-Each genome was used to generate putative TE consensus sequences using `earlGreyLibConstruct` in Earl Grey (v4.4.0)[^fn1], configured with Dfam curated elements (v3.7)[^fn2], using default settings. All putative consensus sequences were combined into a single FASTA file containing 773,843 entries. A non-redundant TE library was constructed using a scalable cascaded clustering approach using MMseqs2[^fn3] `easy-cluster` with `--min-seq-id 0.8 -c 0.8 --cov-mode 1 --cluster-reassign`, resulting in 354,315 non-redundant sequences. Representative sequences for each cluster were extracted and labelled with the species name from which the representative originated.
+Each genome was used to generate putative TE consensus sequences using `earlGreyLibConstruct` in Earl Grey (v4.4.0)[^fn1], configured with Dfam curated elements (v3.7)[^fn2], using default settings. All putative consensus sequences were combined into a single FASTA file containing 773,843 entries. To generate the clustered non-redundant library, we employed a scalable cascaded clustering approach using MMseqs2[^fn3] `easy-cluster` with `--min-seq-id 0.8 -c 0.8 --cov-mode 1 --cluster-reassign`, resulting in 354,315 non-redundant sequences. Representative sequences for each cluster were extracted and labelled with the species name from which the representative originated. These representative sequences are the basis of the family name in MycoMobilome. In the unclustered library, the family naming is consistent with the clustered library, and individual members of each cluster are labelled with the convention `family-[x]_member-[y]` where each family can be comprised of several member sequences.
 
-Open reading frames (ORFs) were detected in all six frames of each consensus sequence using `transeq` in EMBOSS (v6.6.0)[^fn4] with `-clean -frame 6`. Matches to known host proteins were identified using the Fungi RefSeq[^fn5] database (Release 228) and Diamond BLASTp[^fn6] with `--sensitive --matrix BLOSUM62 --evalue 1e-3`. Potential hits were combined for each query sequence. Sequences with hits to RefSeq, and either no hits to known TE protein domains, or partial hits to known TE protein domains that do not overlap with RefSeq hit coordinates, were labelled as potential host genes and removed from the MycoMobilome dataset. Any hits to proteins labelled as `uncharacterized|hypothetical|low quality|predicted protein` were kept due to the potential to be TE-derived.
+Open reading frames (ORFs) were detected in all six frames of each consensus sequence in the _clustered_ library using `transeq` in EMBOSS (v6.6.0)[^fn4] with `-clean -frame 6`. Matches to known host proteins were identified using the Fungi RefSeq[^fn5] database (Release 228) and Diamond BLASTp[^fn6] with `--sensitive --matrix BLOSUM62 --evalue 1e-3`. Potential hits were combined for each query sequence. Sequences with hits to RefSeq, and either no hits to known TE protein domains, or partial hits to known TE protein domains that do not overlap with RefSeq hit coordinates, were labelled as potential host genes and removed from the MycoMobilome dataset. Any hits to proteins labelled as `uncharacterized|hypothetical|low quality|predicted protein` were kept due to the potential to be TE-derived.
 
-Matches to known TE proteins were identified using two complementary approaches: (i) Using HMMscan in HMMER (v3.4)[^fn7] to detect homology to known TE protein domains curated by the [REPET group](https://urgi.versailles.inrae.fr/download/repet/profiles/ProfilesBankForREPET_Pfam35.0_GypsyDB.hmm.tar.gz). Matches were identified using `hmmscan -E 10 --noali`. Hits were filtered to retain those where `fseq_evalue <=0.001` and `fseq_bitscore >= 50`. Hits were retained as potential TEs unless the query also matched RefSeq proteins, in which case they were removed to avoid including host genes or chimeric TE–host gene models.
+Matches to known TE proteins were identified using two complementary approaches: 
+
+(i) Using HMMscan in HMMER (v3.4)[^fn7] to detect homology to known TE protein domains curated by the [REPET group](https://urgi.versailles.inrae.fr/download/repet/profiles/ProfilesBankForREPET_Pfam35.0_GypsyDB.hmm.tar.gz). Matches were identified using `hmmscan -E 10 --noali`. Hits were filtered to retain those where `fseq_evalue <=0.001` and `fseq_bitscore >= 50`. Hits were retained as potential TEs unless the query also matched RefSeq proteins, in which case they were removed to avoid including host genes or chimeric TE–host gene models.
 
 (ii) Using BLASTp to detect homology to known TE protein domains supplied with RepeatMasker (v4.1.5) `RepeatPeps.lib`.(repeatmasker.org). Matches were identified using `blastp -evalue 1e-3`. Nested hits were removed to retain the highest quality protein hit for each query, followed by combining adjacent and overlapping hits. Hits were retained as potential TEs unless non-overlapping hits to the same query were also found in the RefSeq hits set, in which case these were removed due to the potential that these hits could be host genes, or chimeric TE-host gene models. 
 
-A total of 24,571 consensus sequences were identified as putative host genes and removed from the database, resulting in a potential TE consensus set containing 329,744 sequences. This set was further filtered to remove all putative TE consensus sequences <120bp in length, as these are likely to be poor quality and incomplete. In addition, the base composition of each consensus was calculated using `seqtk comp` (https://github.com/lh3/seqtk) and all sequences with an N content >=5% were removed due to being poor quality, reducing the final MycoMobilome library to 276,641 sequences.
+A total of 24,571 consensus sequences were identified as putative host genes and removed from the database, resulting in a potential TE consensus set containing 329,744 sequences. This set was further filtered to remove all putative TE consensus sequences <120bp in length, as these are likely to be poor quality and incomplete. In addition, the base composition of each consensus was calculated using `seqtk comp` (https://github.com/lh3/seqtk) and all sequences with an N content >=5% were removed due to being poor quality, reducing the final clustered MycoMobilome library to 276,641 sequences. The unclustered MycoMobilome library was also filtered to remove putative host genes and/or TE consensus sequences <120bp in length and/or with an N content >=5%, reducing the final unclustered MycoMobiliome library to 586,441 sequences.
 
-For each consensus sequence, if there are hits to known TE protein domains, the sequences were labelled as "supported". Following this, the identity of each protein domain hit was evaluated to determine whether the consensus sequence classification is supported by protein hits from the REPET profiles bank or RepeatMasker RepeatPeps. If the identified domains support the consensus classification, the consensus sequence is labelled with `_PE` for `protein evidence`. If the identified domains conflict with the consensus classification, the consensus sequence is labelled with `_DA` for `disagreement`. If there are no identified domains, the consensus sequence is labelled with `_NE` for `no evidence`. The appropriate domains for each classification are defined in the table below:
+For each MycoMobilome family, if there are hits to known TE protein domains, the sequences were labelled as "supported". Following this, the identity of each protein domain hit was evaluated to determine whether the consensus sequence classification is supported by protein hits from the REPET profiles bank or RepeatMasker RepeatPeps. If the identified domains support the consensus classification, the consensus sequence is labelled with `_PE` for `protein evidence`. If the identified domains conflict with the consensus classification, the consensus sequence is labelled with `_DA` for `disagreement`. If there are no identified domains, the consensus sequence is labelled with `_NE` for `no evidence`. The appropriate domains for each classification are defined in the table below:
 
  |High level TE classification | Appropriate Domain Hits from REPET                                                     | RepeatMasker RepeatPeps  |
  |-----------------------------|----------------------------------------------------------------------------------------|--------------------------|
@@ -135,7 +144,15 @@ For each consensus sequence, if there are hits to known TE protein domains, the 
  | PLE                         | RT,EN,ClassIrelated                                                                    | PLE                      |
  | Retroposon                  | RT,INT,RH,GAG,AP,VirusRelated,LTRrelated,Caulimovirus,ClassIrelated,ENV,EN,LINErelated | Retroposon               |
 
-Sequences are named with the convention `MycMob1.0_family-[n]-[six digit species code]_[protein evidence]#[high level classification]/[sub level classification] @[genus species]`. Protein hits to known TE proteins are provided with MycoMobilome to support further investigation in specific use cases. No changes were made to classifications assigned during automated curation, therefore this database should be treated as _uncurated_ and caution should be used to check important or interesting TE loci on a case-by-case basis. Please note that _all_ nonautonomous elements will have the label `_NE` as they do not contain any intact protein domains. This does not mean they are not real TEs. As such, for most use cases we suggest using the complete MycoMobilome v1.0 dataset, unless you are specifically interested in autonomous TEs only. 
+## Naming Convention
+
+In the unclustered database, sequences are named with the convention `MycMob1.1_family-[n]_member-[n]-[six digit species code]_[protein evidence]#[high level classification]/[sub level classification] @[genus species]`
+
+In the clustered database, sequences are named with the convention `MycMob1.1_family-[n]-[six digit species code]_[protein evidence]#[high level classification]/[sub level classification] @[genus species]`. 
+
+Protein hits to known TE proteins are provided with MycoMobilome to support further investigation in specific use cases. No changes were made to classifications assigned during automated curation, therefore this database should be treated as _uncurated_ and caution should be used to check important or interesting TE loci on a case-by-case basis. Please note that _all_ nonautonomous elements will have the label `_NE` as they do not contain any intact protein domains. This does not mean they are not real TEs. As such, for most use cases we suggest using the complete MycoMobilome v1.0 dataset, unless you are specifically interested in autonomous TEs only. 
+
+No genome quality filtering was performed on our genome set to maximise taxonomic breadth. Consequently, some TE consensus sequences could be incomplete or low quality due to their curation in low quality genomes. Consensus sequences in MycoMobilome that have been curated from genomes with an N50 below 50kb and BUSCO score <90% complete are labelled with `LQGenome` in the header, enabling these to be indentified and filtered if required.
 
 ## Some thoughts on best practices
 
@@ -175,9 +192,9 @@ To contribute new sequences, please follow these steps:
 
 8. After submission, we will be notified and will note to incorporate new submissions with updates to the database.
 
-## What is in MycoMobilome v1.0?
+## What is in MycoMobilome v1.1?
 
-A quantification of consensus sequences in MycoMobilome v1.0, split by high-level classification, protein support, and number of consensus sequences can be found in the [summary table](./MycoMobilome_v1.0_consensuslist.md).
+A quantification of consensus sequences in MycoMobilome v1.1, split by high-level classification, protein support, and number of consensus sequences can be found in the [summary table](./MycoMobilome_v1.1_consensuslist.md).
 
 ## Citations
 
