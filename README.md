@@ -46,11 +46,11 @@ To make best use of this database, and to annotate fungal genomes using it, we s
 mamba install -n earlgrey bioconda::earlgrey
 ```
 
-2. Download the MycoMobilome database and save on your system (NEEDS UPDATE TKTK)
+2. Download the MycoMobilome database and save on your system
 
 ```
 mkdir -p MycoMobilome_db && cd MycoMobilome_db
-curl -O "https://zenodo.org/record/17037469/files/MycoMobilome_v1.0.tar.gz"
+curl -O "https://zenodo.org/record/18243921/files/MycoMobilome_v1.1.tar.gz"
 ```
 
 3. Uncompress the database files
